@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Автобусы в Казани</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).on("click", "#ajax-button", function () {
+            $.get("/busTimetable", function (responseText) {
+                //var nameValue = document.getElementById("1").value;
+                //if (responseText.contains(nameValue)) $("#ajax-div").text(responseText);
+                $("#ajax-div").text(responseText);
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="ajax-div">
+
+</div>
+<br>
+<form>
+    <input type="button" id="ajax-button" value="Получить данные">
+</form>
+</body>
+</html>
