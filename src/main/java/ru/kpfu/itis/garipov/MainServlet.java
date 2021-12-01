@@ -20,11 +20,10 @@ import java.util.List;
 public class MainServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(getInfo());
-
     }
 
     private String getInfo() {
@@ -60,17 +59,17 @@ public class MainServlet extends HttpServlet {
             responses.add(gson.fromJson(jsons[i], Response.class));
         }
         responses.add(gson.fromJson(jsons[jsons.length - 1], Response.class));
-        String content = "";
-        for (int i = 0; i < responses.size(); i++) {
-            content += "Обновлено в " + responses.get(i).updated_at + "<br/>";
-            content += "Маршрут: " + responses.get(i).getData().Marsh + "<br/>";
-            content += "Широта: " + responses.get(i).getData().Latitude + "<br/>";
-            content += "Долгота: " + responses.get(i).getData().Longitude + "<br/>";
-            content += "Скорость автобуса: " + responses.get(i).getData().Speed + "<br/>";
-            content += "Азимут: " + responses.get(i).getData().Azimuth + "<br/>";
-            content += "_____________<br/>";
+        StringBuilder content = new StringBuilder();
+        for (Response respons : responses) {
+            content.append("Обновлено в ").append(respons.updated_at).append("\n");
+            content.append("Маршрут: ").append(respons.getData().Marsh).append("\n");
+            content.append("Широта: ").append(respons.getData().Latitude).append("\n");
+            content.append("Долгота: ").append(respons.getData().Longitude).append("\n");
+            content.append("Скорость автобуса: ").append(respons.getData().Speed).append("\n");
+            content.append("Азимут: ").append(respons.getData().Azimuth).append("\n");
+            content.append("_____________" + "\n");
         }
         System.out.println(content);
-        return content;
+        return content.toString();
     }
 }

@@ -7,15 +7,13 @@
     <script>
         $(document).on("click", "#ajax-button", function () {
             $.get("/busTimetable", function (responseText) {
-                //var nameValue = document.getElementById("1").value;
-                //if (responseText.contains(nameValue)) $("#ajax-div").text(responseText);
                 $("#ajax-div").text(responseText);
             });
         });
     </script>
 </head>
 <body>
-<div id="ajax-div">
+<div id="ajax-div" style="white-space:pre">
 
 </div>
 <br>
